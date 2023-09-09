@@ -423,7 +423,9 @@ int main()
 - Debe indicarse el tipo de dato.
 - Las variables pueden inicializarse de forma grupal.
 - Las constantes se definen en una línea `#define`, que es una directiva del preprocesador.
-Por ej: `#define MAX 100`
+
+  Por ej: `#define MAX 100`
+
 - Las constantes pueden ser enteras, reales y de carácter.
 
 #### Aritmética
@@ -444,5 +446,116 @@ Dos modos de comentar las acciones del código escrito:
   lineas
 */
 ```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Compilador
+
+El compilador para C del proyecto GNU se llama "gcc" y su nombre proviene de "GNU C Compiler" (O GNU Collection Compiler).
+
+Un compilador, es un programa informático que traduce un programa de un lenguaje a otro, generando un lenguaje equivalente que la máquina será capaz de interpretar.
+
+Este proceso de traducción se conoce como compilación.
+
+### Código Fuente
+
+El compilador gcc es capaz de compilar cualquier programa en lenguaje C, escrito en un archivo de texto convencional. Este archivo lleva el sufijo ".c" para identificar que su contenido corresponde al código de un programa escrito en lenguaje C.
+
+Actualmente existen herramientas más especificas para escribir y editar código fuente de manera más eficaz que un simple editor de texto.
+
+### Compilando un programa en C
+
+```bash
+gcc -Wall holaMundo.c -o holaMundo
+```
+
+El comando anterior compila el código fuente a código máquina y lo almacena en archivo ejecutable.
+
+**_-Wall:_** Opción para activar las advertencias del compilador.
+
+**_-o:_** Permite especificar el archivo de salida. Si este se omite, se crea uno por defecto 'a.exe'.
+
+**_holaMundo.c:_** nombre del archivo fuente
+
+**_holaMundo:_** nombre del archivo fuente
+
+### Etapas de compilación
+
+Cuando invocamos el comando `gcc`, normalmente se realizan los un **preprocesamiento**, **compilación**, **ensamblado** y **enlazado**.
+
+Cada etapa tiene un código fuente como entrada y un código objeto como resultado. El codigo de las etapas intermedias sirve de fuente para la siguiente. Para las etapas, utilizaremso el siguiente ejemplo
+
+#### Ejemplo 2:
+
+```C
+/** circulo.c */
+#include <stdio.h>
+#define PI 3.1416
+
+int main()
+{
+  float area, radio;
+  printf("Ingresar el radio del circulo: ");
+  scanf("%f", &radio);
+  area = PI * (radio * radio);
+  printf("Area del circulo = %.2f", area);
+
+  return 0
+}
+```
+
+#### Preprocesamiento
+
+Es realizado por el preprocesador. Esta primera etapa traduce el archivo fuente que es una forma apliada del lenguaje.
+
+```sh
+gcc -E circulo.c -o circulo.i
+```
+
+Luego del preprocesamiento, es posible ver en el archivo _circulo.i_, que la constante simbólica **PI**, definida con la directiva del preprocesador `#define`, es sustituida por su valor en todos los lugares donde aparece.
+
+En esta etapa, se resuelven todas las directivas del preprocesador que aparezcan en el código fuente.
+
+##### Opciones que se usaron para preprocesar el archivo de código fuente:
+
+- **-E:** Opción para detener el proceso de compilación luego de realizado el preprocesamiento. La salida es en la forma de un archivo preprocesado. Los archivos que no requieren preprocesamiento son ignorados.
+- **-o:** Opción para especificar el archivo de salida.
+- **circulo.c:** Nombre del archivo de entrada a ser preprocesado.
+- **circulo.i::** Nombre del archivo de salida. Se utiliza el sufijo _".i"_ para identificar a los archivos preprocesados.
+
+#### Compilación
+
+La compilacio4n transforma el código C preprocesado en el lenguaje ensamblador propio del procesador de nuestra máquina.
+
+```sh
+gcc -S circulo.c
+```
+
+Con este comando se realizan las dos primeras etapas y se crea un archivo _"circulo.s"_.
+
+- **-S:** Opcio4n para detener luego de realizada la etapa de compilación, no realiza la etapa de ensamblado. La salida es en forma de código _assembly_.
+- **circulo.c:** Nombre del archivo de entrada para ser compilado.
+
+#### Ensamblado
+
+Se traduce el programa escrito en lenguaje _assembly_, de la etapa anterior, a código binario en lenguaje de maquina entendible por el procesador.
+
+```sh
+gcc -c circulo.c
+```
+
+Con este comando se realizan las tres primeras etapas, creando el archivo _"circulo.o"_. Este archivo contiene código binario listo para ser enlazado en la próxima etapa.
+
+- **-c:** Opcio4n para detener luego de realizada la etapa de ensamblado.
+
+#### Enlazado
+
+Las funciones como `printf`, se encuentran compiladas y ensambladas en librerías existentes. Para que el archivo resultado del proceso de compilación completo sea ejecutable, es necesario incorporar el código binario de estas funciones en el lenguaje final.
+
+```sh
+gcc circulo.c -o circulo
+```
+
+Esta es la línea de comando que comúnmente se usará al compilar un archivo en C para obtener un archivo ejecutable.
 
 **[⬆ Volver arriba](#tabla-de-contenidos)**
