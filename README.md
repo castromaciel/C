@@ -35,7 +35,7 @@ Cada algoritmo tiene:
 
 - El método **DIVIDE AND CONQUER** con la que se aborda un problema tiene la característica de ser una técnica **TOP-DOWN**. (Es una estrategia que permite descomponer un problema largo y complejo en subproblemas mas pequeños y fáciles de resolver).
 
-#### Ejemplo:
+#### Ejemplo 1:
 
 La modalidad de pago de la factura de luz en una cierta ciudad es la siguiente: se establece una tarifa mensual para el consumo mínimo (hasta los 100 kwh) de $1200. Si se ha sobrepasado dicho consumo, se suma una tarifa de $125 por cada kwh adicional; pero si está vencida la factura, la tarifa que se usa ya no es de $125 sino de $210. Además en cualquier caso se hace un descuento del 5% al monto total, por pago de contado. Diseñe un algoritmo con niveles de refinamiento, que determine cuánto debe pagar cada cliente. Pruebe la misma para un número indefinido de clientes.
 
@@ -123,7 +123,7 @@ Simplificar su expresión encontrando sus aspectos principales, los datos que se
 
 Se deben determinar en forma clara y concreta el objetivo que se desea.
 
-Por ejemplo el Algoritmo de la [unidad 0](./unidad_0.md)
+Por ejemplo el Algoritmo de la [unidad 0](#ejemplo-1)
 
 ```
 ALGORITMO: PAGO_LUZ
@@ -177,7 +177,9 @@ Realizar una solución ejecutable en una computadora usando un lenguaje de progr
 /** Aqui se colocará la solución en lenguaje C*/
 #include <stdio.h>
 
-int main() {
+int main()
+{
+
   return 0
 }
 ```
@@ -309,3 +311,138 @@ También permiten al programador olvidarse del funcionamiento interno de la máq
 La respuesta es un retundo NO.
 
 HTML es un lenguaje de etiquetas (tag) que comunican al navegador cuál es la información a mostrar por pantalla.
+
+### La programación estructurada
+
+Es un paradigma de programación orientado a mejorar la claridad, calidad y tiempo de desarrollo de un programa de computadora.
+
+Propone segregar los procesos en estructuras elementales:
+
+- Secuencia
+- Selección
+- Iteración
+
+### Lenguaje C
+
+Los laboratorios Bell lo desarrollaron a principios de la decada del 70.
+Los autores son Brian Kernighan y Dennis Ritchie.
+
+El objetivo de su creación fue para que los programadores de Bell pudieran redactar su sitema operativo UNIX para una nueva computadora.
+
+Debido a que los otros lenguajes de alto nivel existentes en aquel tiempo (COBOL, FORTRAN, etc), eran demasiados lentos para ser utilizados en la codificación de un sistema operativo. Los programadores de laboratorios Bell decidieron desarrolla su propio lenguaje, basado en Algol y BCPL, dos eficientes lenguajes de alto nivel.
+
+#### Características de C
+
+- Es un lenguaje para la programación estructurada
+- Es tipificado
+- Contiene muy pocas palabras reservadas
+- No contiene órdenes para trabajar con objetos compuestos (cadenas, registros, etc)
+- Distingue entre mayúsculas y minúsculas
+
+#### Ventajas
+
+- Es el lenguaje más portado en la existencia, habiendo compiladores para casi todos los sistemas conocidos.
+- Proporciona facilidades para realizar programas modulares y/o utilizar código o bibliotecas existentes.
+- Lenguaje flexible, veloz y potente.
+- Posibilita programación estructurada o modular.
+- Acceso a memoria de bajo nivel mediante el uso de punteros.
+
+#### Desventajas
+
+- No tiene instrucciones propias para la asignacio4n dinámica de memoria, ni instrucciones de entrada/salida.
+- Se requiere más tiempo en conseguir el ejecutable, por que cada vez se compila todo el fichero.
+- No dispone de sistemas de control automáticos y la seguridad depende casi exclusivamente de la experiencia del programador.
+
+### En un programa intervienen
+
+- Ordenes para el preprocesador
+- Variables
+- Constantes
+- Aritmética
+- Funciones
+- Funciones de entrada y salida
+- Comentarios
+
+#### Ordenes para el preprocesador
+
+Conceptualmente es un paso previo a la compilación, las pasa usadas son:
+`#include`, `#define`. Se utiliza para inclusión de archivos.
+
+```mermaid
+stateDiagram
+  direction LR
+    s1 : Código fuente (.c)
+    s2 : Ficheros de cabecera (.h)
+    s3 : Código objeto (.o)
+
+    s1 --> Compilacion
+    s2 --> Compilacion
+
+    state Compilacion {
+      direction LR
+        Preprocesador --> Compilador
+    }
+
+    Compilacion --> s3
+```
+
+#### Funciones
+
+**_Un programa escrito en código C es una reunión de funciones._**
+
+**main**: Función principal, debe estar presente en todos los programas escritos en C. Puede invocar a otras funciones.
+
+- Un método para comunicar datos entre las funciones, es a través de argumentos.
+- Las paréntesis después del nombre, están para encerraar una lista de valores que serán argumentos.
+- Puede ocurrir que una función esté definida para no esperar argumentos.
+
+#### Funciones de entrada y salida
+
+La biblioteca stándar `stdio.h` provee al programador una extensa gama de funciones para lectura y escritura. Es necesario escribir una orden para el preprocesador para usar dichas funciones.
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  int num;
+  printf("Ingrese un numero");
+  scanf("%d", &num);
+  printf("El numero ingresado fue %d", num);
+
+  return 0;
+}
+```
+
+#### Variables y constantes
+
+- Son objetos sobre los que actúan las instrucciones que componen el programa.
+- Deben ser declaradas.
+- Deben tener un identificador asociado.
+- El 1º caracter debe ser una letra.
+- Debe indicarse el tipo de dato.
+- Las variables pueden inicializarse de forma grupal.
+- Las constantes se definen en una línea `#define`, que es una directiva del preprocesador.
+Por ej: `#define MAX 100`
+- Las constantes pueden ser enteras, reales y de carácter.
+
+#### Aritmética
+
+- Interacción entre los operadores aritméticos y las variables y/o constantes declaradas (si el tipo es numérico).
+- El tipo de operación permitido está ligado con el _tipo de dato_ con que fue declarada la variable y/o constante.
+- Tipos de datos básicos: `int`,`float`,`char`,`short`,`long`,`double`.
+
+#### Comentarios
+
+Dos modos de comentar las acciones del código escrito:
+
+```C
+// Comentarios de una sola línea
+
+/* Comentarios
+  de varias
+  lineas
+*/
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
