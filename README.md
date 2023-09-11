@@ -5,6 +5,7 @@
 1. [Unidad 0 - algoritmos](#algoritmos)
 2. [Unidad 1 - programación](#programación)
 3. [Unidad 2 - lenguajes de programación](#lenguajes-de-programación)
+4. [Unidad 3 - tipos de datos](#tipos-de-datos)
 
 ## Algoritmos
 
@@ -349,7 +350,7 @@ Debido a que los otros lenguajes de alto nivel existentes en aquel tiempo (COBOL
 
 #### Desventajas
 
-- No tiene instrucciones propias para la asignacio4n dinámica de memoria, ni instrucciones de entrada/salida.
+- No tiene instrucciones propias para la asignación dinámica de memoria, ni instrucciones de entrada/salida.
 - Se requiere más tiempo en conseguir el ejecutable, por que cada vez se compila todo el fichero.
 - No dispone de sistemas de control automáticos y la seguridad depende casi exclusivamente de la experiencia del programador.
 
@@ -525,7 +526,7 @@ En esta etapa, se resuelven todas las directivas del preprocesador que aparezcan
 
 #### Compilación
 
-La compilacio4n transforma el código C preprocesado en el lenguaje ensamblador propio del procesador de nuestra máquina.
+La compilación transforma el código C preprocesado en el lenguaje ensamblador propio del procesador de nuestra máquina.
 
 ```sh
 gcc -S circulo.c
@@ -533,7 +534,7 @@ gcc -S circulo.c
 
 Con este comando se realizan las dos primeras etapas y se crea un archivo _"circulo.s"_.
 
-- **-S:** Opcio4n para detener luego de realizada la etapa de compilación, no realiza la etapa de ensamblado. La salida es en forma de código _assembly_.
+- **-S:** Opción para detener luego de realizada la etapa de compilación, no realiza la etapa de ensamblado. La salida es en forma de código _assembly_.
 - **circulo.c:** Nombre del archivo de entrada para ser compilado.
 
 #### Ensamblado
@@ -546,7 +547,7 @@ gcc -c circulo.c
 
 Con este comando se realizan las tres primeras etapas, creando el archivo _"circulo.o"_. Este archivo contiene código binario listo para ser enlazado en la próxima etapa.
 
-- **-c:** Opcio4n para detener luego de realizada la etapa de ensamblado.
+- **-c:** Opción para detener luego de realizada la etapa de ensamblado.
 
 #### Enlazado
 
@@ -557,5 +558,167 @@ gcc circulo.c -o circulo
 ```
 
 Esta es la línea de comando que comúnmente se usará al compilar un archivo en C para obtener un archivo ejecutable.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+## Tipos de Datos
+
+- Los lenguajes de alto nivel permiten hacer abstracciones e ignorar los detalles de la representación interna (propios de la máquina), usando el concepto de **_tipos de datos._**
+
+  Así la información almacenada en memoria no es tratada como una secuencia de bits, si no, como valores enteros, reales, carácter, etc.
+
+- Podemos clasificarlos en dos grandes grupos: datos simples y compuestos.
+
+### Tipos de Datos Simples
+
+Los especificadores de tipo de dato, determinan el tipo de dato o elemento de informacio4n que contendrá _el área de memoria reservada para las variables declaradas_ por medio de la declaración en proceso.
+
+| Tipo                           | Palabra reservada |
+| :----------------------------- | :---------------: |
+| Carácter                       |       char        |
+| Entero de longitud estándar    |        int        |
+| Entero de longitud grande      |     long int      |
+| Entero de longitud pequeña     |     short int     |
+| Entero sin signo               |     unsigned      |
+| Punto flotante (real)          |       float       |
+| Punto flotante doble precisión |      double       |
+
+#### Variables
+
+Una variable es un objeto cuyo valor cambia durante la ejecución del programa. Tiene un _nombre_ y ocupa una cierta _posición de memoria_.
+
+**_Todas las variables que se usan deben ser declaradas._** La declaración de la misma, se hace usando una **palabra reservada** del lenguaje. Por ejemplo, **int** es la palabra reservada que le avisa al compilador que la variable con la que se va a trabajar es de tipo entero.
+
+Una palabra reservada es una palabra con significado especifico, predefinido por el lenguaje que se usará.
+
+#### Constantes simbólicas
+
+Una forma de evitar el uso de _"números mágicos"_, que aparecen en nuestro código sin ninguna explicación, es dándoles nombres significativos. una línea `#define`, define una constante simbólica. Por ejemplo:
+
+```C
+#define MAX 200
+```
+
+#### Entradas y salidas básicas.
+
+- C no tiene instrucciones de entrada ni salida.
+- El lenguaje C interpreta que la entrada proviene de stdin (dispositivo estándar de entrada).
+- La salida es dirigida a la stdout (dispositivo estándar de salida).
+- Ambos pueden redirigrse a otros dispositivos.
+
+#### Función de salida: printf
+
+Permite la presentación de valores numéricos, caracteres y cadenas de texto por el archivo estándar de salida (pantalla).
+
+`printf(control, arg1, arg2...)`
+
+**Control:** Aquí se indica la forma en la que se mostrarán los argumentos posteriores (Si los hubiere) y también se pueden escribir cadenas de texto (sin argumentos), o combinar ambas posibildades, así como secuencias de escape.
+
+**args:** argumentos cuyos valores serán mostrados en la línea de salida. Si se utilizan argumentos, se debe indicar en la cadena de control, tantos caracteres de conversión (o modificadores) como argumentos se van a presentar.
+
+#### Listado de modificadores
+
+| Modificador | Detalle                                           |
+| :---------: | ------------------------------------------------- |
+|  **_%c_**   | Un único carácter \*                              |
+|  **_%d_**   | Un entero con signo, en base decimal \*           |
+|     %u      | Un entero sin signo, en base decimal              |
+|     %o      | Un entero en base octal                           |
+|     %x      | Un entero en base hexadecimal                     |
+|     %e      | Un número real en coma flotante, con exponente    |
+|  **_%f_**   | Un número real en coma flotante, sin exponente \* |
+|     %s      | Una cadena de caracteres                          |
+|     %p      | Un puntero o dirección de memoria                 |
+
+> El formato completo de los modificadores es del tipo:
+>
+> `%[signo][longitud][.precisión][I/L]conversión`
+
+- **Signo:**
+
+  - **-:** Indica si el valor se ajustará a la izquierda.
+  - **+:** Establece que el número siempre será impreso con signo.
+
+- **longitud:** Especifica un ancho mínimo de campo. Si tiene menos caráccteres que el ancho de campo, será rellenado a la izquierda (normalmente con espacios).
+
+- **precisión:** Indica el número máximo de decimales que tendra el valor.
+
+- **I/L:** Utilizamos I cuando se trata de una variable de tipo long, y L cuando es de tipo double.
+
+#### Secuencias de escape
+
+Las secuencias de escape permiten expresar ciertos caracteres no imprimibles, a través de la combinación adecuada de algunos caracteres alfabéticos.
+
+| Nombre                 | Secuencias de escape |
+| :--------------------- | :------------------: |
+| Nulo                   |          \0          |
+| Retroceso              |          \b          |
+| Tabulador              |          \t          |
+| Salto de línea         |          \n          |
+| Salto de página        |          \f          |
+| Retorno de carro       |          \r          |
+| Comillas               |         \\"          |
+| Signo de interrogación |         \\?          |
+| Barra invertida        |         \\\          |
+
+#### Función de entrada: scanf
+
+Permite ingresar la información o datos en posiciones de memoria a traves del archivo estándar de entrada (teclado).
+
+`scanf(control, arg1, arg2...)`
+
+**Control:** cadena de control que indica los modificadores que haran referencia al tipo de dato de los argumentos.
+
+**args:** son los nombres o identificador es de los argumentos de entrada cuyos valores se incorporarán por teclado.
+
+**_scanf_** "necesita conocer" la posición de la memoria en que se encuentra la variable para poder almacenar la informacio4n ingresada. Por eso se utiliza un operador unario de direción \*\*&(ampersand), que se coloca delante del nombre de cada variable.
+
+`scanf("%d %d %d", &var1, &var2, &var3)'`
+
+Si no se indica cual es la dirección interna de estas variables (la posición de memoria), el programa no podrá acceder luego a los valores tipiados desde el teclado.
+
+```C
+int main()
+{
+  char letra;
+
+  scanf("%c", &letra);
+  printf("%c", letra);
+
+  return 0
+}
+```
+
+### Datos
+
+Podemos definir **dato** como una expresio4n general que describe los objetos con los cuales opera una computadora. A nivel hardware son representados como "tiras de bits" y son manejados por instrucciones propias del procesador.
+
+Vovliendo a los [Tipos de Datos Simples](#tipos-de-datos-simples), son caracterizados por que sus componentes no se pueden descomponer en tipos más simples, es decir representan valores atómicos. Por ejemplo: entero, carácter.
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  printf("El tamanio de int es: %zu bytes\n", sizeof(int));
+  printf("El tamanio de float es: %zu bytes\n", sizeof(float));
+  printf("El tamanio de double es: %zu bytes\n", sizeof(double));
+  printf("El tamanio de char es: %zu bytes\n", sizeof(char));
+
+  return 0;
+}
+```
+El `%zu` es un especificador para imprimir valores de tipo size_t.
+
+size_t es un tipo de dato sin signo, que se utiliza comunmente para represntar tamaños de objetos o índices de arrglos.
+
+El resultado por consola es el siguiente
+
+```
+El tamanio de int es: 4 bytes
+El tamanio de float es: 4 bytes
+El tamanio de double es: 8 bytes
+El tamanio de char es: 1 bytes
+```
 
 **[⬆ Volver arriba](#tabla-de-contenidos)**
