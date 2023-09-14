@@ -1,9 +1,12 @@
 # programación - 2023
 
-## Tabla de contenidos
+## Tabla de cont;enidos
 
-1. [Unidad 0 - algoritmos](#algoritmos)
-2. [Unidad 1 - programación](#programación)
+2. [Unidad 0 - algoritmos](#algoritmos)22. [Unidad 1 - programación](#programación);
+...
+default:
+  sentencias;
+  break;
 3. [Unidad 2 - lenguajes de programación](#lenguajes-de-programación)
 4. [Unidad 3 - tipos de datos](#tipos-de-datos)
 
@@ -678,6 +681,8 @@ Permite ingresar la información o datos en posiciones de memoria a traves del a
 Si no se indica cual es la dirección interna de estas variables (la posición de memoria), el programa no podrá acceder luego a los valores tipiados desde el teclado.
 
 ```C
+#include <stdio.h>
+
 int main()
 {
   char letra;
@@ -708,6 +713,7 @@ int main()
   return 0;
 }
 ```
+
 El `%zu` es un especificador para imprimir valores de tipo size_t.
 
 size_t es un tipo de dato sin signo, que se utiliza comunmente para represntar tamaños de objetos o índices de arrglos.
@@ -719,6 +725,277 @@ El tamanio de int es: 4 bytes
 El tamanio de float es: 4 bytes
 El tamanio de double es: 8 bytes
 El tamanio de char es: 1 bytes
+```
+
+#### Tipos de dato entero: tamaño, calificadores
+
+**¿Cómo saber los valores que puede asumir una variable `int`?**
+
+```C
+#include <stdio.h>
+#include <limits.h> // Biblioteca
+
+int main()
+{
+  printf("Rango de representación de int: %d a %d\n", INT_MIN, INT_MAX);
+
+  return 0;
+}
+```
+
+```
+Rango de representación de int: -2147483648 a 2147483647
+```
+
+Esta representación tiene que ver con la forma en que la máquina almacena los números (en forma binaria). El rango se calcula como $[-2^{(n-1)}, 2^{(n-1)} - 1]$
+
+##### Calificadores
+
+Existen algunos calificadores que se aplican a los tipos básicos. Sirve para proporcionar diferentes longitudes de enteros donde sea práctico.
+
+```C
+#include <stdio.h>
+#include <limits.h>
+
+int main()
+{
+  printf("Rango de representacion de int %d a %d\n", INT_MIN, INT_MAX);
+  printf("Rango de representacion de short int %d a %d\n", SHRT_MIN, SHRT_MAX);
+  printf("Rango de representacion de long int %ld a %ld\n", LONG_MIN, LONG_MAX);
+}
+```
+
+El resultado por consola es el siguiente
+
+```
+Rango de representacion de int -2147483648 a 2147483647
+Rango de representacion de short int -32768 a 32767
+Rango de representacion de long int -9223372036854775808 a 9223372036854775807
+```
+
+Los números **unsigned** son siempre positivos o cero, obedecen al módulo $2^n$, con n número de bits. Los números **signed** pueden asumir valores menores
+
+#### Tipos de dato float y double: tamaño, calificadores
+
+El tipo float es un punto flotante de precisión normal, mientras que el tipo double es de precisión extendida.
+
+> float < double < long double
+
+Rango de valores posibles para float
+
+```C
+#include <stdio.h>
+#include <float.h>
+
+int main()
+{
+  printf("Valor minimo de float: %e\n", FLT_MIN);
+  printf("Valor maximo de float: %e\n", FLT_MAX);
+
+  return 0;
+}
+```
+
+El resultado por consola es el siguiente
+
+```
+Valor minimo de float: 1.175494e-38
+Valor maximo de float: 3.402823e+38
+```
+
+#### Operadores
+
+##### Relacionales
+
+|  C  | Descripción   |
+| :-: | ------------- |
+|  >  | Mayor         |
+| >=  | Mayor o igual |
+|  <  | Menor         |
+| <=  | Menor o igual |
+| ==  | Igual         |
+| !=  | Diferente     |
+
+##### Lógicos
+
+|  C  | Descripción        |
+| :-: | ------------------ |
+| &&  | And, y, conjunción |
+| ll  | Or, o, disyunción  |
+|  !  | Not, no, negación  |
+
+> Las ll representan el operador or ||
+
+##### Asignación
+
+|  C  | Descripción |
+| :-: | ----------- |
+|  =  | Asignación  |
+
+##### Lógicos
+
+|  C  | Descripción           |
+| :-: | --------------------- |
+|  +  | Suma                  |
+|  -  | Resta                 |
+| \*  | Producto              |
+|  /  | Cociente              |
+|  %  | Resto división entera |
+
+##### Prioridades de Operadores
+
+| Prioridad | Operadores     |
+| --------- | -------------- |
+| Más Alta  | ()             |
+|           | !              |
+|           | \* / %         |
+|           | < <= > >=      |
+|           | == !==         |
+|           | &&             |
+|           | ll             |
+| Más baja  | = += -= \*= /= |
+
+> Las ll representan el operador or ||
+
+#### Conversiones y asignació para los tipos numéricos
+
+En una expresión, cuando un operador tiene operandos de distintos tipos, ambos se conviernte a un tipo común. En general las conversiones son de tipo angosto a un tipo ancho sin pérdida de información.
+
+`int < float < double < long double`
+
+`operando1 = operando2`
+
+Si son de distinto tipo, el `operando2` se convierte al tipo del operando 1.
+
+`i = 34.567;` -> `i = 34;`
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  int entero;
+  entero = 34.567;
+  printf("El numero es: %d", entero);
+  return 0;
+}
+```
+
+El resultado por consola es el siguiente
+
+```
+El numero es: 34
+```
+
+**_El valor del punto flotante se trunca si se asigna a una variable entera._**
+
+Ahora, si j es de tipo float:
+
+`j = i + 100;`
+`j = 34 + 100;`
+`j = 134.00000;`
+
+**_Los enteros se convierten a flotante._**
+
+#### El operador ternario: ？
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  int num1 = 145, num2 = 56;
+  int resultado;
+
+  resultado = (num1 > num2) ? num1 : num2;
+  printf("Resultado = %d", resultado);
+
+  return 0;
+}
+```
+
+#### Estructura de selección
+
+En el lenguaje C se dispone de sentencias condicionales `if-else`, `switch` que permiten seleccionar una única alternativa entre varias para ser ejecutada.
+
+Su equivalente en diseño de algoritmos es la estructura Si-sino:
+
+```
+SI condición ENTONCES
+  Accion 1;
+SINO
+  Accion 2;
+FIN SI
+```
+
+#### Sentencia if-else
+
+Esta sentencia permite sleccionar el grupo de sentencias o bloques que serán ejecutados, de acuerdo al valor de una condición:
+
+```C
+if(expression)
+{
+  proposition1;
+} else {
+  proposition2;
+}
+```
+
+**Expresión:** va entre ( ) y tiene que ser evaluada como VERDADERA (distinta de cero) o FALSO (Cero).
+
+**Proposición:** puede ser simple o compuesta { }. 
+
+Ejemplo 3:
+
+Escribir un algoritmo que lea un carácter y determine si es consonante en minúsculas o no. Usar código ASCII.
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  char letra;
+
+  printf("Ingrese una letra: ");
+  scanf("%c", &letra);
+
+  if (letra == 97 || letra == 101 || letra == 105 || letra == 111 || letra == 117)
+  {
+    printf("Es vocal");
+  } else {
+    printf("Es consonante");
+  }
+
+  return 0;
+}
+```
+
+#### Sentencia Switch
+
+**Expresión:** puede ser una expresión, un carácter alfanumérico, una constante o una variable.
+
+**Const.:** caso o valores con el que se va a comparar la expresión.
+
+**Sent.:** puede ser cualquier bloque de sentencias en C.
+
+**default:** Es opcional, se usa cuando se estima que el case predeterminado va a ocurrir con mayor frecuencia.
+
+**break:** Provoca una salida inmediata del switch. Los case solo sirven como etiquetas. Las formas más comunes de salir de un switch son **break** y **return.**
+
+```C
+switch(expression)
+{
+  case const1:
+    sent1;
+    break;
+  case const2:
+    sent2;
+    break;
+  ...
+  default:
+    sentencias;
+    break;
+}
 ```
 
 **[⬆ Volver arriba](#tabla-de-contenidos)**
