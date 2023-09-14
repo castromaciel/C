@@ -1,14 +1,26 @@
 # programación - 2023
 
-## Tabla de cont;enidos
+## Tabla de contenidos
 
-2. [Unidad 0 - algoritmos](#algoritmos)22. [Unidad 1 - programación](#programación);
-...
-default:
-  sentencias;
-  break;
+1. [Unidad 0 - algoritmos](#algoritmos)
+2. [Unidad 1 - programación](#programación)
+    * [Proceso de programación](#el-proceso-de-programación)
+    * [Etapas en la resolución de problemas con computadora](#etapas-de-resolución-de-problemas)
 3. [Unidad 2 - lenguajes de programación](#lenguajes-de-programación)
+    * [Lenguaje de programación](#lenguaje-de-programación)
+    * [Programación estructurada](#la-programación-estructurada)
+    * [El lenguaje C](#lenguaje-c)
+    * [Elementos básicos de un programa](#en-un-programa-intervienen)
+    * [Acerca del compilador](#compilador)
+    * [Etapas de compilación](#etapas-de-compilación)
 4. [Unidad 3 - tipos de datos](#tipos-de-datos)
+    * [Tipos de Datos Simples](#tipos-de-datos-simples)
+    * [Entradas y salidas básicas](#entradas-y-salidas-básicas)
+    * [Tipo de dato entero](#tipos-de-dato-entero-tamaño-calificadores)
+    * [Tipo de dato float](#tipos-de-dato-float-y-double-tamaño-calificadores)
+    * [Operadores](#operadores)
+    * [Estructura de selección](#estructura-de-selección)
+
 
 ## Algoritmos
 
@@ -188,6 +200,8 @@ int main()
 }
 ```
 
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
 ### Etapas de resolución de problemas
 
 ```mermaid
@@ -284,6 +298,8 @@ Un **Lenguaje de programación** es un lenguaje formal que proporciona una serie
 
 A todo este conjunto de órdenes y datos escritos mediante un lenguaje de programación, se le conoce como programa.
 
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
 ### Tipos de lenguajes
 
 La máquina sólo entiende un lenguaje conocido como código binario o código máquina, consiste en ceros y unos. Es decir solo utiliza 0 y 1 para codificar cualquier acción.
@@ -316,6 +332,8 @@ La respuesta es un retundo NO.
 
 HTML es un lenguaje de etiquetas (tag) que comunican al navegador cuál es la información a mostrar por pantalla.
 
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
 ### La programación estructurada
 
 Es un paradigma de programación orientado a mejorar la claridad, calidad y tiempo de desarrollo de un programa de computadora.
@@ -325,6 +343,8 @@ Propone segregar los procesos en estructuras elementales:
 - Secuencia
 - Selección
 - Iteración
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
 
 ### Lenguaje C
 
@@ -356,6 +376,8 @@ Debido a que los otros lenguajes de alto nivel existentes en aquel tiempo (COBOL
 - No tiene instrucciones propias para la asignación dinámica de memoria, ni instrucciones de entrada/salida.
 - Se requiere más tiempo en conseguir el ejecutable, por que cada vez se compila todo el fichero.
 - No dispone de sistemas de control automáticos y la seguridad depende casi exclusivamente de la experiencia del programador.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
 
 ### En un programa intervienen
 
@@ -466,6 +488,8 @@ Este proceso de traducción se conoce como compilación.
 El compilador gcc es capaz de compilar cualquier programa en lenguaje C, escrito en un archivo de texto convencional. Este archivo lleva el sufijo ".c" para identificar que su contenido corresponde al código de un programa escrito en lenguaje C.
 
 Actualmente existen herramientas más especificas para escribir y editar código fuente de manera más eficaz que un simple editor de texto.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
 
 ### Compilando un programa en C
 
@@ -775,6 +799,8 @@ Rango de representacion de long int -9223372036854775808 a 9223372036854775807
 
 Los números **unsigned** son siempre positivos o cero, obedecen al módulo $2^n$, con n número de bits. Los números **signed** pueden asumir valores menores
 
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
 #### Tipos de dato float y double: tamaño, calificadores
 
 El tipo float es un punto flotante de precisión normal, mientras que el tipo double es de precisión extendida.
@@ -802,6 +828,8 @@ El resultado por consola es el siguiente
 Valor minimo de float: 1.175494e-38
 Valor maximo de float: 3.402823e+38
 ```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
 
 #### Operadores
 
@@ -857,7 +885,9 @@ Valor maximo de float: 3.402823e+38
 
 > Las ll representan el operador or ||
 
-#### Conversiones y asignació para los tipos numéricos
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Conversiones y asignación para los tipos numéricos
 
 En una expresión, cuando un operador tiene operandos de distintos tipos, ambos se conviernte a un tipo común. En general las conversiones son de tipo angosto a un tipo ancho sin pérdida de información.
 
@@ -913,6 +943,8 @@ int main()
   return 0;
 }
 ```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
 
 #### Estructura de selección
 
