@@ -4,23 +4,23 @@
 
 1. [Unidad 0 - algoritmos](#algoritmos)
 2. [Unidad 1 - programación](#programación)
-    * [Proceso de programación](#el-proceso-de-programación)
-    * [Etapas en la resolución de problemas con computadora](#etapas-de-resolución-de-problemas)
+   - [Proceso de programación](#el-proceso-de-programación)
+   - [Etapas en la resolución de problemas con computadora](#etapas-de-resolución-de-problemas)
 3. [Unidad 2 - lenguajes de programación](#lenguajes-de-programación)
-    * [Lenguaje de programación](#lenguaje-de-programación)
-    * [Programación estructurada](#la-programación-estructurada)
-    * [El lenguaje C](#lenguaje-c)
-    * [Elementos básicos de un programa](#en-un-programa-intervienen)
-    * [Acerca del compilador](#compilador)
-    * [Etapas de compilación](#etapas-de-compilación)
+   - [Lenguaje de programación](#lenguaje-de-programación)
+   - [Programación estructurada](#la-programación-estructurada)
+   - [El lenguaje C](#lenguaje-c)
+   - [Elementos básicos de un programa](#en-un-programa-intervienen)
+   - [Acerca del compilador](#compilador)
+   - [Etapas de compilación](#etapas-de-compilación)
 4. [Unidad 3 - tipos de datos](#tipos-de-datos)
-    * [Tipos de Datos Simples](#tipos-de-datos-simples)
-    * [Entradas y salidas básicas](#entradas-y-salidas-básicas)
-    * [Tipo de dato entero](#tipos-de-dato-entero-tamaño-calificadores)
-    * [Tipo de dato float](#tipos-de-dato-float-y-double-tamaño-calificadores)
-    * [Operadores](#operadores)
-    * [Estructura de selección](#estructura-de-selección)
-
+   - [Tipos de Datos Simples](#tipos-de-datos-simples)
+   - [Entradas y salidas básicas](#entradas-y-salidas-básicas)
+   - [Tipo de dato entero](#tipos-de-dato-entero-tamaño-calificadores)
+   - [Tipo de dato float](#tipos-de-dato-float-y-double-tamaño-calificadores)
+   - [Operadores](#operadores)
+   - [Estructura de selección](#estructura-de-selección)
+   - [Estructuras de control iterativas](#estructuras-iterativas)
 
 ## Algoritmos
 
@@ -246,7 +246,7 @@ Se obtendrán módulos que deberán estar ligados entre si para obtener la soluc
 
 #### Escritura de programas
 
-Un algoritmo es una especificación simbólica que debe convertirse a programa real sobre un lenguaje de programación concreto. (Ya sea C, pytho, JavaScript, etc.)
+Un algoritmo es una especificación simbólica que debe convertirse a programa real sobre un lenguaje de programación concreto. (Ya sea C, python, JavaScript, etc.)
 
 Programar no es lo mismo que codificar. La programación se trata de desarrollar una aplicación o máquina completa; mientras que la codificación trata de **traducir** un lenguaje a uno que una máquina pueda entender.
 
@@ -266,7 +266,7 @@ Antes de dar por finalizada cualquier labor de programación, es fundamental pre
 
 - **Errores de tipo logico:** Derivan de un mal diseño de los algoritmos, como ser: bucle infinito, resultados incorrectos, etc.
 
-- **Errores de sintaxis:** Se generan por no cumplicar con las "normas" de escritura de un lenguaje, como ser: falta o mal uso de elementos separadores (comas(,), puntos y comas (;)) o incluso palabras mal escritas.
+- **Errores de sintaxis:** Se generan por no cumplicar con las "normas" de escritura de un lenguaje, como ser: falta o mal uso de elementos separadores (comas(,), puntos y comas ';') o incluso palabras mal escritas.
 
 #### Documentación
 
@@ -975,7 +975,7 @@ if(expression)
 
 **Expresión:** va entre ( ) y tiene que ser evaluada como VERDADERA (distinta de cero) o FALSO (Cero).
 
-**Proposición:** puede ser simple o compuesta { }. 
+**Proposición:** puede ser simple o compuesta { }.
 
 Ejemplo 3:
 
@@ -1031,3 +1031,153 @@ switch(expression)
 ```
 
 **[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Estructuras iterativas
+
+Son utilizados para repetir acciones bajo un condición.
+
+Su notación es:
+
+```
+MIENTRAS(condición)
+  acciones
+Fin_mientras
+```
+
+La condición puede ser simple o compuesta. En este último caso estará “unida” por una conjunción (y) o una disyunción (o).
+
+#### Sentencia While
+
+While ejecuta una sentencia, simple o compuesta, cero o más veces dependiendo de su condición.
+
+```C
+while (condition) {
+  sentencia;
+}
+```
+
+Dónde:
+
+- **condición** es cualquier expresión numérica, relacional o lógica.
+- **sentencia** es una simple o compuesta.
+
+La ejecución de la sentencia `while` sucede así:
+
+1. Se evalúa la condición.
+2. Si el resultado de la evaluación es 0 (falso), la sentencia no se ejecuta y se pasa el control a la siguiente sentencia.
+3. Si el resultado es distinto de 0 (verdadero), se ejecuta la sentencia y el proceso descrito se repite desde el inicio.
+
+```
+ALGORITMO: MAYOR_DE_EDAD
+ENTRADAS:
+  edad, dni: enteros
+
+SALIDA:
+  dni: entero
+
+A1. LEER (edad)
+A2. MIENTRAS (edad > 0)
+      LEER(dni)
+      SI (edad >= 18) ENTONCES
+        ESCRIBIR(dni)
+      FIN_SI
+      LEER(edad)
+    FIN_MIENTRAS
+A3. PARAR
+```
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  int edad, dni;
+
+  printf("Ingrese la edad: ");
+  scanf("%d", &edad);
+
+  while (edad > 0)
+  {
+    printf("Ingrese el dni: ");
+    scanf("%d", &dni);
+
+    if (edad >= 18)
+    {
+      printf("La persona con DNI %d es mayor de edad.", %dni);
+    }
+
+    printf("\nIngrese la proxima edad");
+    scanf("%d", &edad);
+  }
+
+  return 0;
+}
+```
+
+#### Sentencia do-while
+
+En el lazo do-while tiene la comprobación relacional al final, en vez de tenerla al inicio como es en la estructura while.
+
+```C
+do {
+  sentencia;
+} while (condition);
+```
+
+- Se ejecuta al menos una vez.
+- La sentencia se ejecuta y después se evalúa su condición.
+- Condición de salida: La condición se verifica después de la primera ejecución del bloque `do`. Si la condición es verdadera, el bucle continúa ejecutándose; si es false, el bucle termina.
+
+#### Sentencia for
+
+La sentencia for permite ejecutar una sentencia simple o compuesta, repetidamente un número de veces **conocido**.
+
+```C
+for (expresion - comienzo; condicion; progresion - condicion ) {
+  sentencia;
+}
+```
+
+- **Expresión-comienzo:** representan variables de control que serán iniciadas con los valores de las expresiones.
+- **Condición:** es una expresión booleana que si se omite, se supone verdadera.
+- **Progresión-condición:** es una o más expresiones separadas por comas cuyos valores evolucionan en el sentido de que se cumpla la condición para finalizar la ejecución de la sentencia for.
+- **Sentencia:** es una sentencia simple o compuesta.
+
+```
+ALGORITMO: MAYOR_DE_EDAD
+ENTRADAS:
+  edad, dni: enteros
+SALIDAS:
+  dni: entero
+
+A1. HACER 4 VECES (i = 1, ..., 4)
+      LEER(dni, edad)
+      SI (edad >= 18) ENTONCES
+        ESCRIBIR(dni)
+      FIN_SI
+    FIN_HACER
+A2. PARAR
+```
+
+```C
+#include <stdio.h>
+
+int main ()
+{
+  int edad, dni;
+
+  for (int i = 0; i < 4; i++)
+  {
+    printf("\n Ingrese la edad: ");
+    scanf("%d", &edad);
+
+    printf("\n Ingrese el dni: ");
+    scanf("%d", &dni);
+
+    if (edad >= 18)
+    {
+      printf("La persona con DNI %d es mayor de edad", dni);
+    }
+  }
+}
+```
