@@ -610,7 +610,7 @@ Esta es la línea de comando que comúnmente se usará al compilar un archivo en
 
 ### Tipos de Datos Simples
 
-Los especificadores de tipo de dato, determinan el tipo de dato o elemento de informacio4n que contendrá _el área de memoria reservada para las variables declaradas_ por medio de la declaración en proceso.
+Los especificadores de tipo de dato, determinan el tipo de dato o elemento de información que contendrá _el área de memoria reservada para las variables declaradas_ por medio de la declaración en proceso.
 
 | Tipo                           | Palabra reservada |
 | :----------------------------- | :---------------: |
@@ -710,7 +710,7 @@ Permite ingresar la información o datos en posiciones de memoria a traves del a
 
 **args:** son los nombres o identificador es de los argumentos de entrada cuyos valores se incorporarán por teclado.
 
-**_scanf_** "necesita conocer" la posición de la memoria en que se encuentra la variable para poder almacenar la informacio4n ingresada. Por eso se utiliza un operador unario de direción \*\*&(ampersand), que se coloca delante del nombre de cada variable.
+**_scanf_** "necesita conocer" la posición de la memoria en que se encuentra la variable para poder almacenar la información ingresada. Por eso se utiliza un operador unario de direción \*\*&(ampersand), que se coloca delante del nombre de cada variable.
 
 `scanf("%d %d %d", &var1, &var2, &var3)'`
 
@@ -732,7 +732,7 @@ int main()
 
 ### Datos
 
-Podemos definir **dato** como una expresio4n general que describe los objetos con los cuales opera una computadora. A nivel hardware son representados como "tiras de bits" y son manejados por instrucciones propias del procesador.
+Podemos definir **dato** como una expresión general que describe los objetos con los cuales opera una computadora. A nivel hardware son representados como "tiras de bits" y son manejados por instrucciones propias del procesador.
 
 Vovliendo a los [Tipos de Datos Simples](#tipos-de-datos-simples), son caracterizados por que sus componentes no se pueden descomponer en tipos más simples, es decir representan valores atómicos. Por ejemplo: entero, carácter.
 
@@ -1286,7 +1286,7 @@ TIPO nombre_funcion(lista de parámetros)
 
 - Usar nombres representativos para las funciones.
 - El tipo de retorno de la función indica si habrá de devolver valores o no.
-- Tipo `void` no retorna valorres. Una funcio4n de este tipo **Produce efectos**
+- Tipo `void` no retorna valorres. Una función de este tipo **Produce efectos**
 - Si se omite el tipo de los parámetros, se asume entero.
 - La lista de parámetros puede estar vacía, en cuyo caso los paréntesis estarán vacíos.
 - Su definición debe estar al inicio del programa, antes del `main`.
@@ -1587,11 +1587,11 @@ La respuesta es **_SI_**.
    ```
 
 2. Guarde el archivo con el nombre: misFunciones.h, en el mismo lugar donde se encuentra su código `.c` principal
-3. En esste caso para hacer uso de esa librería se debe incluir usando comillas.
+3. En este caso para hacer uso de esa librería se debe incluir usando comillas.
 
    ```C
    #include <stdio.h>
-   #include <misFunciones.h>
+   #include "misFunciones.h"
 
    int main (void)
    {
