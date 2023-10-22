@@ -1,19 +1,22 @@
 # programación - 2023
 
-## Tabla de contenidos
+<details open>
+  <summary>
+    <h2>Tabla de contenidos</h2>
+  </summary>
 
-1. [Unidad 0 - algoritmos](#algoritmos)
-2. [Unidad 1 - programación](#programación)
+0. [Unidad 0 - algoritmos](#algoritmos)
+1. [Unidad 1 - programación](#programación)
    - [Proceso de programación](#el-proceso-de-programación)
    - [Etapas en la resolución de problemas con computadora](#etapas-de-resolución-de-problemas)
-3. [Unidad 2 - lenguajes de programación](#lenguajes-de-programación)
+2. [Unidad 2 - lenguajes de programación](#lenguajes-de-programación)
    - [Lenguaje de programación](#lenguaje-de-programación)
    - [Programación estructurada](#la-programación-estructurada)
    - [El lenguaje C](#lenguaje-c)
    - [Elementos básicos de un programa](#en-un-programa-intervienen)
    - [Acerca del compilador](#compilador)
    - [Etapas de compilación](#etapas-de-compilación)
-4. [Unidad 3 - tipos de datos](#tipos-de-datos)
+3. [Unidad 3 - tipos de datos](#tipos-de-datos)
    - [Tipos de Datos Simples](#tipos-de-datos-simples)
    - [Entradas y salidas básicas](#entradas-y-salidas-básicas)
    - [Tipo de dato entero](#tipos-de-dato-entero-tamaño-calificadores)
@@ -21,6 +24,15 @@
    - [Operadores](#operadores)
    - [Estructura de selección](#estructura-de-selección)
    - [Estructuras de control iterativas](#estructuras-iterativas)
+4. [Unidad 4 - Diseño modular](#diseño-modular)
+   - [Tipos de Funciones](#tipos-de-funciones)
+   - [De modulo a función](#de-módulo-a-función)
+   - [Sintaxis de funciones](#sintxis-para-definir-una-función)
+   - [Consideraciones](#a-tener-en-cuenta)
+   - [Prototipo de una función](#prototipo-de-una-función)
+   - [Funciones de biblioteca](#funciones-de-biblioteca)
+
+</details>
 
 ## Algoritmos
 
@@ -977,7 +989,7 @@ if(expression)
 
 **Proposición:** puede ser simple o compuesta { }.
 
-Ejemplo 3:
+#### Ejemplo 3:
 
 Escribir un algoritmo que lea un carácter y determine si es consonante en minúsculas o no. Usar código ASCII.
 
@@ -1181,3 +1193,415 @@ int main ()
   }
 }
 ```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+## Diseño modular
+
+Recordemos:
+
+- Un programa escrito en C **es un conjunto de definiciones de variables y funciones**, lideradas por `main`.
+- Un programa puede residir en varios archivos fuentes, compilados independientemente y cargarse junto con **funciones de biblioteca.**
+
+### Tipos de Funciones
+
+Existen dos tipos de funciones:
+
+- De biblioteca:
+
+  ```C
+  ...
+  printf('Ingrese su edad: ');
+  scanf('%d', &edad);
+  ...
+  ```
+
+- Definidas por el usuario:
+
+  ```C
+  int dividir(int a, int b)
+  {
+    // Implementación
+    ...
+  }
+
+  int esLetra(char cadena)
+  {
+    // Implementación
+    ...
+  }
+  ```
+
+### De módulo a función
+
+- Los modulos tienen propósitos específicos.
+- Constituyen una parte aislada y autónoma del programa.
+- Se comunican entre si a través de argumentos y valores regresados por las funciones.
+- El argumento es el canal de comunicación entre funciones.
+
+```
+FUNCION esLetra (car): caracter -> entero
+  esLetra <- 0
+  SI (car >= 'a' ^ car <= 'z') ENTONCES
+    esLetra <- 1
+  FIN_SI
+  Retornar(esLetra)
+FIN_FUNCION
+```
+
+```C
+int esLetra (char letra)
+{
+  return (letra <= 97 && letra >= 122) ? 1 : 0
+}
+```
+
+La proposición `return` es el mecanismo para que la función regrese un valor a su invocador.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Sintxis para definir una función
+
+```
+TIPO nombre_funcion(lista de parámetros)
+{
+  declaraciones;
+  proposiciones;
+}
+```
+
+- **TIPO asociado a la función:** Indica el tipo de retorno de la función.
+- **nombre_func:** Debe ser un identificador valido.
+- **(lista de parámetros):** listado de los parámetros formales de la función: tipo1 p1, ..., etc.
+- **declaraciones:** tipo1 var1; tipo2 var 2; tipoi vari; // Estas declraciones definen la lista de variables **_LOCALES_** a la función.
+- **proposiciones:** Las dentro de la función y las proposiciones constituyen el cuerpo de la función que estará encerrada entre llaves: `{}`.
+
+#### Del tipo de retorno y del tipo de la función
+
+- La proposición `return` permite que la función devuelva un valor al medio que la invocó.
+- **Forma de uso:** return _expresión_;
+- Los `()` son optativos.
+
+### A tener en cuenta:
+
+- Usar nombres representativos para las funciones.
+- El tipo de retorno de la función indica si habrá de devolver valores o no.
+- Tipo `void` no retorna valorres. Una funcio4n de este tipo **Produce efectos**
+- Si se omite el tipo de los parámetros, se asume entero.
+- La lista de parámetros puede estar vacía, en cuyo caso los paréntesis estarán vacíos.
+- Su definición debe estar al inicio del programa, antes del `main`.
+
+```C
+// No regresa ni hace nada
+void nada () {};
+```
+
+#### En resumen las funciones:
+
+- Se declaran
+- Se definen
+- Se asocian a un tipo de datos
+- Se invocan
+- Se ejecutan
+- Pueden devolver valor/valores
+- Pueden ejecutar tareas sin retornar valores
+- Pueden llamarse o invocarse desde distintas partes de un programa.
+
+#### Un tipo particular de las funciones
+
+- Son las del tipo void
+- La función no devuelve ningún valor, a cambio, decimos que _"Produce un efecto"_.
+
+```C
+void dibujar_figura(int n);
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Prototipo de una función
+
+```C
+#include <stdio.h>
+
+int esLetra (char letra); // declaración
+
+int main ()
+{
+  char letra;
+  puts('Ingrese un caracter');
+  scanf('%c', &letra);
+
+  if (esLetra(letra) == 1) // Parametros actuales
+  {
+    printf('El caracter ingresado es una letra');
+  } else {
+    printf('El caracter ingresado NO es una letra');
+  }
+}
+
+int esLetra (char letra) // Parametros formales y definición
+{
+  return (letra <= 97 && letra >= 122) ? 1 : 0
+}
+```
+
+- Es un error que la **_declaración_** de una función no coincida con su **_definición_**.
+- Se recomienda hacer una buena selección para los parámetros.
+- Parámetros formales y parametros actuales: Deben coincidir en orden, tipo y cantidad.
+
+#### Variables locales
+
+Declaradas en el contexto de una función, comienzan a "existir" cuando se invoca a la función y desaparecen cuando la función termina de ejecutarse.
+
+Solo pueden ser usadas por la función que las contiene.
+
+No retienen sus valores entre dos invocaciones sucesivas a la función.
+
+#### Variables globales
+
+Son externas a todas las funciones.
+
+Pueden ser accedidas por cualquier función y usadas como parámetros actualies para comunicar datos entre funciones.
+
+Existen en forma "Permanente"
+
+Conservan sus valores entre distintas invocaciones.
+
+#### Alcance de un identificador
+
+El alcance de un nombre es la parte del programa dentro de la cual se puede usar ese nombre.
+
+Variables locales es lo mismo que variables privadas.
+
+Variables globales es lo mismo que variables públicas.
+
+#### La proposición return
+
+La proposición `return` tiene 2 usos importantes:
+
+- Devuelve un valor: `return(expression)`
+- Provoca la salida inmediata de una función: `return;`
+
+#### Ejemplo 4:
+
+```C
+// Versión 1
+int cubo(int num)
+{
+  int aux;
+  aux = num * num * num;
+  return (aux);
+}
+
+```
+
+```C
+// Versión 2
+int cubo(int num)
+{
+  return (num * num * num);
+}
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Funciones de biblioteca
+
+- C proporciona funciones predefinidas que no forman parte del lenguaje (denominadas funciones de biblioteca). Se invocan por su nombre y los parámetros que incluye. Después de que la función sea llamada, el código asociado con la función se ejecuta y, a continuación, se retorna el valor obtenido.
+
+- En C, a diferencia de las funciones definidas por el usuario que requieren una declaración o prototipo en el programa, que indica al compilador el nombre por el cual ésta será invocada, el tipo y el número y tipo de sus argumentos, las funciones de biblioteca requieren que se incluya el archivo donde está su declaración.
+
+#### Ejemplo 5
+
+En el siguiente ejemplo, de la función seno, de la biblioteca math.h
+
+```C
+/*
+* Biblioteca donde se encuentra la declaración
+* de las funciones de entrada y salida
+*/
+#include <stdio.h>
+/*
+* Biblioteca donde se encuentra la declaración
+* de las funciones matemáticas
+*/
+#include <math.h>
+
+int main(void)
+{
+  double result, x = 0.5;
+
+  for (int i = 1; i<= 20; i++)
+  {
+    result = sin(x); // Función seno
+    x += 0.5;
+
+    // Función de salida
+    printf("El seno() de %lf es %lf\n", x, result);
+  }
+
+  return 0;
+}
+```
+
+#### Algunas funciones de biblioteca:
+
+<table>
+  <tr>
+    <th>Libreria</th>
+    <th>Función</th>
+    <th>Descripción</th>
+    <th>Ejemplo de Uso</th>
+  </tr>
+  <tr>
+    <td><code>&lt;stdio.h&gt;</code></td>
+    <td><code>printf()</code></td>
+    <td>Imprime texto en la salida estándar.</td>
+    <td><code>printf("Hola, mundo!\n");</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>scanf()</code></td>
+    <td>Lee datos desde la entrada estándar.</td>
+    <td><code>int num; scanf("%d", &num);</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>getchar()</code></td>
+    <td>Lee un carácter de la entrada estándar.</td>
+    <td><code>char c = getchar();</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>putchar()</code></td>
+    <td>Escribe un carácter en la salida estándar.</td>
+    <td><code>char c = 'A'; putchar(c);</code></td>
+  </tr>
+  <tr>
+    <td><code>&lt;math.h&gt;</code></td>
+    <td><code>sqrt(x)</code></td>
+    <td>Calcula la raíz cuadrada de x.</td>
+    <td><code>double resultado = sqrt(25.0);</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>pow(x, y)</code></td>
+    <td>Calcula x elevado a la potencia y.</td>
+    <td><code>double resultado = pow(2.0, 3.0);</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>sin(x)</code></td>
+    <td>Calcula el seno de x expresado en radianes.</td>
+    <td><code>double resultado = sin(3.14159);</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>cos(x)</code></td>
+    <td>Calcula el coseno de x expresado en radianes.</td>
+    <td><code>double resultado = cos(0.0);</code></td>
+  </tr>
+  <tr>
+    <td><code>&lt;ctype.h&gt;</code></td>
+    <td><code>isalpha(c)</code></td>
+    <td>Retorna verdadero si c es una letra mayúscula o minúscula, falso en caso contrario.</td>
+    <td><code>if (isalpha(c)) { /* hacer algo */ }</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>islower(c)</code></td>
+    <td>Retorna verdadero si c es una letra minúscula, falso en caso contrario.</td>
+    <td><code>if (islower(c)) { /* hacer algo */ }</code></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><code>isupper(c)</code></td>
+    <td>Retorna verdadero si c es una letra mayúscula, falso en caso contrario.</td>
+    <td><code>if (isupper(c)) { /* hacer algo */ }</code></td>
+  </tr>
+</table>
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+<!--
+#### Mas funciones en <math.h>
+
+En la tabla, `x` e `y` son de tipo `double`, las funciones regresan `double`. Los ángulos para las funciones trigonométrias están expresadas en radianes.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Biblioteca <ctype.h>
+
+Funciones de uso común de la biblioteca de manejo de caracteres `<ctype.h>`
+
+**[⬆ Volver arriba](#tabla-de-contenidos)** -->
+
+#### ¿Podemos nosotros crear nuestra propia biblioteca con funciones personalizadas?
+
+La respuesta es **_SI_**.
+
+##### Opción 1
+
+1. Escribir el prototipo de la función y la definición de la misma
+
+   ```C
+   // Prototipo de la función
+   int suma(int x, int y);
+
+   int suma(x,y)
+   {
+     return (x+y); // Retorno
+   }
+   ```
+
+2. Guarde el archivo con el nombre: misFunciones.h, en el lugar donde se instaló el compilador. Por ejemplo `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin`
+3. Ahora usamos nuestra librería
+
+   ```C
+   #include <stdio.h>
+   #include <misFunciones.h>
+
+   int main (void)
+   {
+     int num1 = 5, num2 = 10, resultado;
+
+     resultado = suma(num1, num2);
+     printf("El resultado es: %d", resultado);
+     return 0;
+   }
+
+   ```
+
+##### Opción 2
+
+1. Escribir el prototipo de la función y la definición de la misma
+
+   ```C
+   // Prototipo de la función
+   int suma(int x, int y);
+
+   int suma(x,y)
+   {
+     return (x+y); // Retorno
+   }
+   ```
+
+2. Guarde el archivo con el nombre: misFunciones.h, en el mismo lugar donde se encuentra su código `.c` principal
+3. En esste caso para hacer uso de esa librería se debe incluir usando comillas.
+
+   ```C
+   #include <stdio.h>
+   #include <misFunciones.h>
+
+   int main (void)
+   {
+     int num1 = 5, num2 = 10, resultado;
+
+     resultado = suma(num1, num2);
+     printf("El resultado es: %d", resultado);
+     return 0;
+   }
+
+   ```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
