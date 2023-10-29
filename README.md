@@ -31,7 +31,13 @@
    - [Consideraciones](#a-tener-en-cuenta)
    - [Prototipo de una función](#prototipo-de-una-función)
    - [Funciones de biblioteca](#funciones-de-biblioteca)
-
+5. [Unidad 5 - Tipos de datos derivados](#tipos-de-datos-derivados)
+   - [Arreglos](#arreglos)
+   - [Arreglos de una dimensión](#arreglos-de-una-dimensión)
+   - [Inicialización de arreglos](#inicialización-de-arreglos)
+   - [Arreglo de más de una dimensión](#arreglo-de-más-de-una-dimensión)
+   - [Cadenas - Arreglos de caracteres](#cadenas---arreglos-de-caracteres)
+   - [Funciones](#funciones-de-biblioteca-stringh)
 </details>
 
 ## Algoritmos
@@ -1603,5 +1609,699 @@ La respuesta es **_SI_**.
    }
 
    ```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+## Tipos de Datos Derivados
+
+> Existe una cantidad conceptualmente infinita de tipos de datos derivados, formados a partir de los tipos de datos simples.
+>
+> Brian Kernighan y Dennis Ritchie
+
+### Estructuras de datos Clasificación
+
+Según el tipo de información que contienen.
+
+- Estructuras de datos homogéneas.
+- Estrucutras de datos heterogéneas.
+
+Según la asignación de memoria:
+
+- Estructuras de datos estáticas.
+- Estructuras de datos dinámicas.
+
+En el lenguaje C se predefinen los siguientes tipos de datos derivados
+
+- Arreglos <<<
+- Punteros
+- Estructuras
+- Uniones
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Arreglos
+
+Es una colección de variables ordenadas e indexadas, todas de idéntico tipo que se referencian usando un nombre común. Permite trabajar con una gran cantidad de datos.
+
+El array, también conocido como arreglo, vector o matriz tiene muchas caracteristicas, entre ellas:
+
+- Es un tipo de dato homogéneo.
+- Es una estructura indexada.
+- Es un tipo de dato estático.
+- Los arreglos usan un espacio de almacenamiento contiguo.
+- El nombre del arreglo es una referencia a la dirección de la 1º Componente.
+
+Un arreglo puede ser:
+
+- De una dimensión (un índice)
+
+```C
+int vector[3];
+```
+
+- De varias dimensiones (varios indices)
+
+```C
+int matriz[3][3];
+```
+
+- Las componentes del arreglo pueden ser de cualquier tipo: caracteres, enteros, reales, punteros, estructuras.
+
+#### ¿Cómo se declara un arreglo de una dimensión?
+
+Forma general:
+
+```
+tipo nombre[tamaño]
+```
+
+**Tipo:** puede ser un tipo aritmético (int, float, double), char, puntero, estructura, etc.
+**Nombre:** cualquier identificador válido.
+**Tamaño:** expresión constante entre corchetes que define cuantos elementos guardará el arrglo
+
+##### A tener en cuenta:
+
+Un arreglo siempre se declara incluyendo entre los corchetes el máximo número de elementos, salvo que inicialice el arreglo al mismo tiempo.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Arreglos de una dimensión
+
+"Un vector o arreglo lineal es un tipo de dato arreglo con un índice, es decir con una dimensión".
+
+El acceso a las componentes de un arreglo se puede hacer en forma directa, a través del nombre del arreglo y la notación de subíndice que indica la posición.
+
+Para acceder a uno de los elementos del arreglo en particular, basta con invocar el nombre del arreglo y especificar entre corchetes del elemento.
+
+Por ejemplo, si se quiere acceder al cuarto elemento de un arreglo, se invoca de la siguiente manera:
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  int listaDeNumeros[] = {2,4,6,8,10};
+  // Accedemos al cuarto elemento
+  printf("listaDeNumeros[3] = %d", listaDeNumeros[3]);
+
+  return 0;
+}
+```
+
+¿Qué numero me muestra por pantalla?
+
+```
+listaDeNumeros[3] = 8
+```
+
+#### Operaciones:
+
+Los elementos de un vector se utilizan en las expresiones de C como cualquier otra variable.
+
+Ejemplos:
+
+a[5] = 0.8;
+a[9] = 30. _ a[5];
+a[0] = 3. _ a[9] - a[5]/a[9];
+a[3] = (a[0] + a[9]) / a[3];
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### ¿Cómo se trabaja con el tipo arreglo en diseño
+
+Ejercicio: Realizar un algoritmo que cuenta la cantidad de cada digito que hay en una frase.
+
+```
+ALGORITMO: CONTADOR_DIGITO
+ENTRADA: frase: arreglo de caracteres. MF='\0'
+SALIDA: cont_digito: entero > 0
+Var aux: i: entero >=0
+
+A0. Inicializar
+A1. Leer(frase)
+A2. MIENTRAS (frase <> MF)
+      SI(frase es digito) // en c usamos la función isdigit()
+        cont_digito <- cont_digito + 1
+      FIN_SI
+      i <- i + 1
+    FIN_MIENTRAS
+A3. ESCRIBIR(cont_digito)
+A4. PARAR
+```
+
+#### Del tamaño del arreglo
+
+- La dimensión del arreglo debe ser establecida con anterioridad
+- El tamaño o dimensión del arreglo debe ser una expresión constante.
+- La declaración de un arreglo, es una reserva de memoria, por lo tanto, el tamaño no puede ser una variable ni una expresión variable.
+
+#### Ejemplos de arreglos
+
+Un arreglo siempre se declara incluyendo entre los corchetes el máximo número de elementos, salvo que inicialice el arreglo al mismo tiempo.
+
+```C
+#include <stdio.h>
+#define TAMANIO 3
+
+int main()
+{
+  int lista1[5];
+  int lista1[TAMANIO];
+  int lista1[] = {0,1,2,3,4};
+
+  return 0
+}
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Acceso al contenido de un Arreglo
+
+```C
+#include <stdio.h>
+#define TAMA 20
+
+int main()
+{
+  int arre2[TAMA], j = 0;
+
+  printf("Ingrese 20 numeros enteros: ");
+  for (int i = 0; i < 5; i++)
+  {
+    printf("\n arre2[%d]:", i);
+    scanf("%d", &arre2[i]);
+  }
+
+  printf("El arreglo ingresado es: ");
+
+  while(j < TAMA)
+  {
+    printf("\n arre2[%d]=%d", j, arre2[j]);
+    j++;
+  }
+
+  return 0;
+}
+```
+
+```
+El arreglo ingresado es:
+arre2[0]=1
+arre2[1]=2
+arre2[2]=3
+arre2[3]=4
+arre2[4]=5
+arre2[5]=0
+arre2[6]=16
+arre2[7]=0
+arre2[8]=9
+arre2[9]=0
+arre2[10]=0
+arre2[11]=0
+arre2[12]=8
+arre2[13]=0
+arre2[14]=4199705
+arre2[15]=0
+arre2[16]=0
+arre2[17]=0
+arre2[18]=22
+arre2[19]=0
+```
+
+En el código anterior, hay un error en el bucle for que se utiliza para ingresar números enteros en el arreglo arre2. El bucle está configurado para ejecutarse solo 5 veces `for (int i = 0; i < 5; i++)`, pero la intención es ingresar 20 números enteros.
+
+Para corregir esto, se debe cambiar la condición del bucle for para que se ejecute 20 veces, ya que TAMA es igual a 20. `for (int i = 0; i < TAMA; i++)`.
+
+#### Tamaño de un Arreglo
+
+Se debe **ser responsable en la administración del espacio de memoria** cuando se trabaja con arreglos.
+
+```C
+#include <stdio.h>
+#define LIMITE 10
+#define PROBLEMA 500
+
+int main(void)
+{
+  int indice, arreglo[LIMITE];
+
+  for(indice = 0; indice < PROBLEMA; indice++)
+  {
+    arreglo[indice] = indice;
+  }
+
+  return 0;
+}
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Recomendación
+
+Usar constantes definidas con `#define` para indicar el tamaño.
+
+- Facilita, ordena y organiza los datos.
+- Asegura que las referencias posteriores al arreglo (por ejemplo en un lazo de lectura) no podrán superar el tamaño especificado.
+- Superar el tamaño máximo declarado puede generar situaciones irregulares con resultados perjudiciales, como lo vimos en en ejemplos anteriores.
+
+#### Uso de constantes enteras
+
+```C
+#include <stdio.h>
+#define LIMITE 10 // Definición de una constante TAMA
+
+int main(void)
+{
+  int arreglo[LIMITE]; // Declaración de un arreglo
+
+  for(indice = 0; indice < PROBLEMA; indice++)
+  {
+    arreglo[indice] = indice;
+  }
+
+  return 0;
+}
+```
+
+#### Importante!
+
+En C no se puede operar (comparar, sumar, restar, etc) con todo un vector o toda una matriz como una única entidad.
+
+Hay que tratar sus elementos uno a uno por medio de bucles.
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Inicialización de arreglos
+
+Hay 3 formas de inicializar un arreglo:
+
+- Por omisión.
+- Por inicialización explicita.
+- En tiempo de ejecución.
+
+#### Por omisión
+
+Un arreglo declarado en forma global, se inicializa por omisión (por default), en ceros binarios, a menos que se indique lo contrario
+
+```C
+#include <stdio.h>
+#define TAMA 5
+int arreglo2[TAMA]
+
+int main()
+{
+  int arre1[TAMA];
+
+  printf("El arreglo declarado de manera global es: ");
+  for (int i = 0; i < TAMA; i++)
+  {
+    printf("\n arreglo2[%d] = %d", i, arreglo2[i]);
+  }
+
+  printf("\nEl arreglo declarado en el local a main() es: ");
+  for (int i = 0; i < TAMA; i++)
+  {
+    printf("\n arre1[%d]=%d", i, arre1[i]);
+  }
+
+  return 0;
+}
+```
+
+```
+El arreglo declarado de manera global es:
+ arreglo2[0] = 0
+ arreglo2[1] = 0
+ arreglo2[2] = 0
+ arreglo2[3] = 0
+ arreglo2[4] = 0
+El arreglo declarado en el local a main() es:
+ arre1[0]=32767
+ arre1[1]=32767
+ arre1[2]=32767
+ arre1[3]=32767
+ arre1[4]=32767
+```
+
+En la salida, podemos ver que los elementos del arreglo `arreglo2` (declarado globalmente) se inicializan en `0` de manera predeterminada. Sin embargo, los elementos del arreglo `arre1` (declarado localmente en `main()`) contienen valores que pueden variar y no están inicializados explícitamente, lo que resulta en valores impredecibles (en este caso, valores que representan basura en la memoria).
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Por inicialización explicita
+
+En la declaración, se asignan valores, según la siguiente norma: _los valores a ser asignados a los elementos del arreglo deben estar encerrados entre llaves y separados por comas._
+
+```C
+#include <stdio.h>
+#define TAMA 3
+
+int main()
+{
+  float arre1[] = { 1.2, 3.5, 5.4, 12.2 };
+  int arre3[] = { 2, 4, 6 };
+
+  printf("El arreglo 3 es: ");
+  for(int i = 0; i < TAMA; i++)
+  {
+    printf("\n arre3[%d]=%d", i, arre3[i]);
+  }
+
+  printf("El arreglo 1 es: ");
+  for(int i = 0; i < TAMA; i++)
+  {
+    printf("\n arre1[%d]=%f", i, arre1[i]);
+  }
+
+  return 0;
+}
+```
+
+```
+El arreglo 3 es:
+arre3[0]=2
+arre3[1]=4
+arre3[2]=6
+El arreglo 1 es:
+arre1[0]=1.200000
+arre1[1]=3.500000
+arre1[2]=5.400000
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### En tiempo de ejecución
+
+El caso más común. Las componentes del arreglo tomarán valores que son leídos desde algún dispositivo de entradaa o si no, valores generados por el mismo programa.
+
+```C
+#include <stdio.h>
+#define TAMA 5
+
+int main()
+{
+  float arre1[TAMA];
+
+  printf("Ingresar 5 numeros reales");
+  for(int i = 0; i < TAMA; i++)
+  {
+    printf("\n arre3[%d]: ", i);
+    scanf("%f", &arre3[i]);
+  }
+
+  printf("El arreglo 1 es: ");
+  for(int i = 0; i < TAMA; i++)
+  {
+    printf("\n arre1[%d]=%.2f", i, arre1[i]);
+  }
+
+  return 0;
+}
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Arreglo de más de una dimensión
+
+Forma general:
+
+```
+tipo nombre[tama1][tam2]...[tamN];
+```
+
+La diferencia principal es que se necesitarán múltiples índices para acceder a los elementos en las diferentes dimensiones del arreglo.
+
+#### Ejemplo
+
+```C
+#include <stdio.h>
+#define FILAS 5
+#define COLUMNAS 4
+
+int main()
+{
+  int matriz[FILAS][COLUMNAS];
+
+  // Llena la matriz con valores del 1 al 20 (FILAS * COLUMNAS)
+  for (int i = 0; i < FILAS; i++)
+  {
+    for (int j = 0; j < COLUMNAS; j++)
+    {
+      matriz[i][j] = (i * FILAS) + j + 1;
+    }
+  }
+
+  // Muestra la matriz
+  printf("Matriz:\n");
+  for (int i = 0; i < FILAS; i++)
+  {
+    for (int j = 0; j < COLUMNAS; j++)
+    {
+      printf("%d\t", matriz[i][j]);
+    }
+    printf("\n")
+  }
+
+  return 0;
+}
+```
+
+```
+Matriz:
+1   2   3   4
+5   6   7   8
+9   10  11  12
+13  14  15  16
+17  18  19  20
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Ejemplo
+
+Como sería el código si trabajamos con un arreglo de 3 dimensiones?
+
+Debemos tener en cuenta que:
+1° índice: seria la profundidad.
+2° índice: la cantidad de filas.
+3° índice: la cantidad de columnas
+
+```C
+#include <stdio.h>
+#define PROFUNDIDAD 3
+#define FILAS 4
+#define COLUMNAS 2
+
+
+int main()
+{
+  int matriz[PROFUNDIDAD][FILAS][COLUMNAS];
+
+  // Llenar la matriz tridimensional sin variable valor
+  for (int i = 0; i < PROFUNDIDAD; i++)
+  {
+    for (int j = 0; j < FILAS; j++)
+    {
+      for (int k = 0; k < COLUMNAS; k++)
+      {
+        // Calcular el valor de la celda en función de las dimensiones
+        matriz[i][j][k] = (i * PROFUNDIDAD * FILAS) + (j * COLUMNAS) + k + 1;
+      }
+    }
+  }
+
+  // Muestra la matriz tridimensional
+  printf("Matriz tridimensional:\n");
+  for (int i = 0; i < PROFUNDIDAD; i++)
+  {
+    for (int j = 0; j < FILAS; j++)
+    {
+      for (int K = 0; K < COLUMNAS; K++)
+      {
+        printf("%d\t", matriz[i][j][K]);
+      }
+      printf("\n")
+    }
+    printf("\n")
+  }
+
+  return 0;
+}
+```
+
+```
+Matriz tridimensional:
+1	2
+3	4
+5	6
+7	8
+
+9	10
+11	12
+13	14
+15	16
+
+17	18
+19	20
+21	22
+23	24
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+### Cadenas - Arreglos de caracteres
+
+Este es el tipo de arreglo más popular en código C. La última celda del vector de carácteres se reserva para el carácter que marca el fin de una cadena, que es el carácter nulo: `\0`.
+
+#### Inicialización explícita de una cadena
+
+Los valores a asignar deben estar encerraados entre llaves y separados por comas.
+
+```C
+#include <stdio.h>
+#define MAX 45
+
+int main(void)
+{
+  char apellido[MAX] = {'C','a','s','t','r','o','\0'};
+
+  char nombre[MAX] = "Maciel";
+  char unt[12] = {'u', 'n', 'i', 'v', 'e', 'r', 's', 'i', 'd', 'a', 'd'};
+
+  ...
+  return 0;
+}
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Funciones de biblioteca y arreglos
+
+##### Función de entrada para cadenas de caracteres:
+
+**gets(arre):** almacena datos ingresados desde stdin a la cadena denominada `arre`. Un carácter ingresado `\n` de nueva linea se convierte en un cero de terminación `\0`.
+
+##### Función de salida para cadenas de caracteres:
+
+**puts(arre):** encamina la cadena `arre` hacia un stdout. Un cero de terminación `\0` al final de la cadena se convierte en un nuevo carácter de nueva línea `\n`.
+
+#### Ejemplo:
+
+```C
+#include <stdio.h>
+#define MAX 50
+
+int main()
+{
+  char nombre[MAX];
+
+  printf("Ingrese su nombre: ");
+  gets(nombre);
+
+  printf("El nombre ingresado es: ");
+  puts(nombre);
+
+  return 0;
+}
+```
+
+```
+Ingrese su nombre: Maciel Leandro
+El nombre ingresado es: Maciel Leandro
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Ejemplo
+
+Cargar cadenas de caracteres en un arreglo de dos dimensiones
+
+```C
+#include <stdio.h>
+
+int main()
+{
+  char nombres[3][20];
+
+  // Solicitar al usuario que ingrese los nombres
+  for(int i = 0; i < 3; i++)
+  {
+    printf("Ingrese el nombre %d: ", i + 1);
+    gets(nombres[i]);
+  }
+
+  // Imprimir los nombres ingresados
+  for(int i = 0; i < 3; i++)
+  {
+    printf("Nombre %d: %s\n", i , nombres[i]);
+  }
+
+  return 0;
+}
+```
+
+**[⬆ Volver arriba](#tabla-de-contenidos)**
+
+#### Funciones de biblioteca <string.h>
+
+| Prototipo                 | Descripción                                         |
+| ------------------------- | --------------------------------------------------- |
+| int strlen(cad1)          | Retorna la longitud de cad1                         |
+| int strcmp(cad1, cad2)    | Compara cad1 con cad2, carácter a carácter          |
+| char \*strcat(cad1, cad2) | Concatena la cad2 al final de la cad1. Retorna cad1 |
+
+#### Funciones y Arreglos
+
+```C
+#include <stdio.h>
+#define TAMA 10
+
+void inicializar(int arre[TAMA], int cant);
+void cargarArreglo(int arre[TAMA], int cant);
+
+
+int main()
+{
+  int arre[TAMA];
+  int cant;
+
+  printf("Ingrese la cantidad de Elementos(<10):");
+  scanF("%d", &cant);
+
+  inicializar(arre, cant);
+  cargarArreglo(arre, cant);
+
+  for(int i = 0; i < cant; i++)
+  {
+    printf("\n arre[%d] = %d", i, arre[i]);
+  }
+
+  return 0;
+}
+
+void cargarArreglo(int arre[TAMA], int cant)
+{
+  for (int i = 0; i < cant, i++)
+  {
+    arre[i] = i * 3;
+  }
+}
+
+void inicializar(int arre[TAMA], int cant)
+{
+  for (int i = 0; i < cant, i++)
+  {
+    arre[i] = 0;
+  }
+}
+```
+
+#### A modo de resumen
+
+Los arreglos, como unidad, no admiten:
+
+- Asignación directa entre ellos.
+- Operaciones aritméticas directas.
+- Comparaciones directas.
+- Devolución como valor de devolución como función.
 
 **[⬆ Volver arriba](#tabla-de-contenidos)**
